@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FilesController;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -19,6 +20,20 @@ class UsersController extends Controller
     // User registration
     public function register(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "username" => 'required|max:16',
+            "email" => 'email',
+            "password" => 'required|max:255',
+            "first_name" => 'max:45',
+            "last_name" => 'max:45'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json([
+                $validator->errors()
+            ]);
+        }
+
         DB::table('user')->insert([
             "username" => $request->input('username'),
             "email" => $request->input('email'),
@@ -39,6 +54,17 @@ class UsersController extends Controller
     //  User login
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json([
+                $validator->errors()
+            ]);
+        }
+
         if (!Auth::attempt($request->only('username', 'password'))){
             return response()->json([
                 'message' => 'invalid credentials!'

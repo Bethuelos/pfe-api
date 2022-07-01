@@ -13,18 +13,18 @@ class CertificatesOfConformityContoller extends Controller
     {
         DB::table('certificateofconformity')->insert([
             "undersigned" => $request->input('undersigned'),
-                "date_a" => $request->input('date_a'),
-                "place_a" => $request->input('place_a'),
-                "request_no_request_buildingpermit" => $request->input('request_no_request_buildingpermit'),
-                "request_no_request" => $no_request,
-                "notification_s" => $request->input('notification_s'),
-                "sessionviewed_s" => $request->input('sessionviewed_s'),
-                "folderfollow_s" => $request->input('folderfollow_s'),
-                "taxes_participations_s" => $request->input('taxes_participations_s'),
-                "cost_s" => $request->input('cost_s'),
-                "object_s" => $request->input('object_s'),
-                "commune_s" => $request->input('commune_s'),
-                "object_more_s" => $request->input('object_more_s'),
+            "date_a" => $request->input('date_a'),
+            "place_a" => $request->input('place_a'),
+            "request_no_request_buildingpermit" => $request->input('request_no_request_buildingpermit'),
+            "request_no_request" => $no_request,
+            "notification_s" => $request->input('notification_s'),
+            "sessionviewed_s" => $request->input('sessionviewed_s'),
+            "folderfollow_s" => $request->input('folderfollow_s'),
+            "taxes_participations_s" => $request->input('taxes_participations_s'),
+            "cost_s" => $request->input('cost_s'),
+            "object_s" => $request->input('object_s'),
+            "commune_s" => $request->input('commune_s'),
+            "object_more_s" => $request->input('object_more_s'),
         ]);
 
         return response()->json([

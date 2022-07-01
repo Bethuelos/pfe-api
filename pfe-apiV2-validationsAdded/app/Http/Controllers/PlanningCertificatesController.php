@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PlanningCertificatesController extends Controller
 {
@@ -18,6 +19,18 @@ class PlanningCertificatesController extends Controller
     // Planning Certificates registration
     public function register(Request $request, $no_request)
     {
+        // $validator = Validator::make($request->all(), [
+        //     "email" => 'required|email',
+        //     "first_name" => 'required|max:2',
+        //     "last_name" => 'required|max:45'
+        // ]);
+
+        // if ($validator->fails()){
+        //     return response()->json([
+        //         $validator->errors()
+        //     ]);
+        // }
+
         DB::table('planningcertificate')->insert([
             "last_name" => $request->input('last_name'),
             "fist_name" => $request->input('fist_name'),
@@ -55,7 +68,8 @@ class PlanningCertificatesController extends Controller
             "is_PS_s" => $request->input('is_PS_s'),
             "is_PSU_s" => $request->input('is_PSU_s'),
             "is_RGU_s" => $request->input('is_RGU_s'),
-            "landlocated_s" => $request->input('is_non_aedificandi_s'),
+            "landlocated_s" => $request->input('landlocated_s'),
+            "is_non_aedificandi_s" => $request->input('is_non_aedificandi_s'),
             "is_buildable_s" => $request->input('is_buildable_s'),
             "is_transferable_s" => $request->input('is_transferable_s'),
             "is_non_transferable_s" => $request->input('is_non_transferable_s'),
@@ -124,7 +138,7 @@ class PlanningCertificatesController extends Controller
             ]);
         }
 
-        
+
 
     }
 
